@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "coffee.weneed.eterna.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "AbstractContainerScreenMixin",
+    "ItemRendererMixin",
+    "ItemStackMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

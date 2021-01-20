@@ -6,6 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StainedGlassPaneBlock;
 import net.minecraft.block.TransparentBlock;
 import net.minecraft.client.render.*;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.BlockItem;
 import net.minecraft.resource.SynchronousResourceReloadListener;
 import org.spongepowered.asm.mixin.Final;
@@ -41,6 +43,8 @@ public abstract class ItemRendererMixin implements SynchronousResourceReloadList
 			Item t = BlockUtil.getItemOrBlock(e).asItem();
 			if (!t.equals(Items.AIR)) {
 				st = t.getDefaultStack();
+				st.addEnchantment(Enchantments.VANISHING_CURSE, 1);
+				st.addHideFlag(ItemStack.TooltipSection.ENCHANTMENTS);
 			} else {
 				st = stack;
 			}
@@ -98,7 +102,7 @@ public abstract class ItemRendererMixin implements SynchronousResourceReloadList
 						vertexConsumer4 = ItemRenderer.getItemGlintConsumer(vertexConsumers, renderLayer, true, stack.hasGlint());
 					}
 
-					this.renderBakedItemModel(model, stack, light, overlay, matrices, vertexConsumer4);
+					this.renderBakedItemModel(model, stack, 15728880, overlay, matrices, vertexConsumer4);
 				}
 				/*if (bl1) {
 					DiffuseLighting.enableGuiDepthLighting();

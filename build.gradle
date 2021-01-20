@@ -5,6 +5,9 @@ plugins {
 }
 repositories{
 	mavenLocal()
+	maven {
+		url 'https://jitpack.io'
+	}
 }
 // Add "embedded" configuration
 configurations {
@@ -22,6 +25,7 @@ group = project.maven_group
 minecraft {
 }
 dependencies {
+	// By version tag
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -72,4 +76,9 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 }
 jar {
 	from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+	doLast {
+	copy {
+		from 'build/libs/ShulkerCeption-v1.0.jar'
+		into "C:/Users/Daleth/Documents/MultiMC/instances/Fabric 1.16.4/.minecraft/mods"
+	}}
 }

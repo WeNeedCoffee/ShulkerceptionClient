@@ -44,7 +44,7 @@ public abstract class AbstractContainerScreenMixin<GenericContainerScreenHandler
 
 		try {
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			this.textRenderer.draw(matrices, "-List of Items-", 100, 30, 0x1ffffff);
+			this.textRenderer.draw(matrices, "-List of Items-", 100, 1, 0x1ffffff);
 			drawListItems();
 			List<Map.Entry<String, Integer>> stuff = new ArrayList<>();
 			for (Map.Entry<String, Integer> e : lastChest.entrySet()) {
@@ -66,9 +66,9 @@ public abstract class AbstractContainerScreenMixin<GenericContainerScreenHandler
 					if (i > 30){
 						break;
 					}
-					this.itemRenderer.renderInGui(is, (z * 21), 40 + i * 20);
-					String count = MathUtil.shortString(e.getValue(), 4);
-					renderGuiItemOverlay(this.textRenderer, is, (z * 21), 43 + i * 20, count);
+					this.itemRenderer.renderInGui(is, (z * 22) - 17, 10 + i * 20);
+					String count = MathUtil.shortString(e.getValue(), 3);
+					renderGuiItemOverlay(this.textRenderer, is, (z * 22) - 17, 12 + i * 20, count);
 
 					//this.textRenderer.draw(matrices, e.getValue() + "x " + is.getItem().getName().getString(), super.width - 180, 40 + i * 15, 0xfffff1);
 				}
@@ -145,7 +145,7 @@ public abstract class AbstractContainerScreenMixin<GenericContainerScreenHandler
 	private static long lastChestDraw = 0;
 
 	private void drawListItems() {
-		if (System.currentTimeMillis() - lastChestDraw > 500) {
+		if (System.currentTimeMillis() - lastChestDraw > 2500) {
 			lastChest = listItemsCount(listInvItems(this.handler.getInventory()));
 			lastChestDraw = System.currentTimeMillis();
 
